@@ -10,6 +10,8 @@
 
 ![面心立方-MATLAB跑出来的图](面心立方.png)
 
+我的所有程序都放在[我的Github: https://github.com/HanpuLiang/Something-Small](https://github.com/HanpuLiang/Something-Small)中，点击即可查看。
+
 ## 基本的思考
 
 如果我们想要做一个类似于这样子的结构图的话，我们需要知道些什么?
@@ -198,4 +200,6 @@ end
 
 ## 写在后面
 
-以上所有代码我都放在了我的Github中，可以通过点击[我的Github: ]()
+以上所有代码我都放在了我的Github中，可以通过点击[我的Github: https://github.com/HanpuLiang/Something-Small](https://github.com/HanpuLiang/Something-Small)去查看。代码下载后可直接运行。
+
+如果喜欢的话，麻烦点个关注，给个赞，加个收藏噢。
