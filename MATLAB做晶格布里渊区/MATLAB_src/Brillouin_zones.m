@@ -1,23 +1,23 @@
 %{
 @author: Liang Hanpu
 @date: 2019/3/25
-@description: ????????
-              ??**???**???????
+@description: ±¾³ÌĞòÓÃÓÚ¼ÆËãÒ»Ğ©¼òµ¥¾§¸ñµÄ²¼ÀïÔ¨Çø²¢×öÍ¼¡£
+              Ä¿Ç°ÈÔÊÇ**Î´Íê³É×´Ì¬**£¬Ö»ÊÇ¿ª¸ö¿ÓÕ¼¸öÎ»£¬ÌáĞÑÎÒ»¹Òª×öÕâ¶«Î÷¡£
 %}
 
 clc, clear, close all
 
-% 
+% ¾§¸ñ³£Êı
 a = 2;
-% ?
+% »ùÊ¸
 a1 = a/2*[0, 1, 1];
 a2 = a/2*[1, 0, 1];
 a3 = a/2*[1, 1, 0];
 
 [b1, b2, b3] = reciprocalLattice(a1, a2,a3);
 
-%% ?
-% 
+%% ×÷Í¼
+% »ù´¡ÉèÖÃ
 figure
 axis equal
 hold on
@@ -27,50 +27,10 @@ xlabel('x')
 ylabel('y')
 zlabel('z')
 
-% ??
+% »ùÊ¸Ê¸Á¿
 plotVector(b1, b2, b3)
-% ??
-% ?ÿ??ñ?
-plotFace(b1)
-plotFace(-b1)
-plotFace(b2)
-plotFace(-b2)
-plotFace(b3)
-plotFace(-b3)
-
-%{
-@author: Liang Hanpu
-@date: 2019/3/25
-@description: ??????????????????????
-              ????**?????**????????????????????
-%}
-
-clc, clear, close all
-
-% ????
-a = 2;
-% ??
-a1 = a/2*[0, 1, 1];
-a2 = a/2*[1, 0, 1];
-a3 = a/2*[1, 1, 0];
-
-[b1, b2, b3] = reciprocalLattice(a1, a2,a3);
-
-%% ??
-% ????
-figure
-axis equal
-hold on
-grid on
-view(-37.5, 30)
-xlabel('x')
-ylabel('y')
-zlabel('z')
-
-% ????
-plotVector(b1, b2, b3)
-% ??????
-% ????????????????????
+% ²¼ÀïÔ¨Çø±ß½ç
+% ÕâÀïÓ¦¸Ã¿ÉÒÔ²»ÓÃÂŞÁĞ¿ªÀ´£¬¿ÉÒÔÓÃ±éÀúÒ»ÏÂ
 plotFace(b1)
 plotFace(-b1)
 plotFace(b2)
@@ -86,9 +46,9 @@ function plotVector(b1, b2, b3)
 end
 
 function plotFace(b)
-% ??????????
-%   ??????????
-    % ?????????????
+% ¼ÆËãÃæµÄ·½³Ì²¢ÇÒ×÷Í¼
+%   ÈçºÎÅĞ¶ÏÃæµÄ´óĞ¡£¿£¿
+    % ÏëÓÃÇò×ø±êĞ´£¬µ«ÊÇ·¢ÏÖ²»¶Ô
     
 %     rho = sqrt(sum(b.^2));
 %     theta0 = acos(b(3)/rho);
@@ -101,7 +61,7 @@ function plotFace(b)
 %     x = rho*sin(T).*cos(P);
 %     y = rho*sin(T).*sin(P);
     
-    % ?????????????????
+    % ÏëÓÃÖ±½Ç×ø±êÏµĞ´£¬µ«ÊÇ²»ºÃ¿ØÖÆ´óĞ¡
     [x, y] = meshgrid(linspace(-5, 5, 10));
     % z = rho*cos(T);
     z = -1/b(3)*(b(1)*x + b(2)*y - b(1)^2-b(2)^2)+b(3);
@@ -112,47 +72,7 @@ end
 
 
 function [b1, b2, b3] = reciprocalLattice(a1, a2, a3)
-% ???????????
-    V = a1*cross(a2, a3)';
-    b1 = 2*pi*cross(a2, a3)/V;
-    b2 = 2*pi*cross(a3, a1)/V;
-    b3 = 2*pi*cross(a1, a2)/V;
-end
-    
-function plotVector(b1, b2, b3)
-    plot3([0 b1(1)], [0 b1(2)], [0 b1(3)])
-    plot3([0 b2(1)], [0 b2(2)], [0 b2(3)])
-    plot3([0 b3(1)], [0 b3(2)], [0 b3(3)])
-end
-
-function plotFace(b)
-% ???
-%   ???
-    % ???
-    
-%     rho = sqrt(sum(b.^2));
-%     theta0 = acos(b(3)/rho);
-%     phi0 = atan(b(2)/b(1));
-%     theta = linspace(theta0-0.5, theta0+0.5, 10);
-%     phi = linspace(phi0*5/10, phi0*15/10, 10);
-%     
-%     [T, P] = meshgrid(theta, phi);
-%     
-%     x = rho*sin(T).*cos(P);
-%     y = rho*sin(T).*sin(P);
-    
-    % ????ÿ??
-    [x, y] = meshgrid(linspace(-5, 5, 10));
-    % z = rho*cos(T);
-    z = -1/b(3)*(b(1)*x + b(2)*y - b(1)^2-b(2)^2)+b(3);
-    mesh(x, y, z)
-end
-
-
-
-
-function [b1, b2, b3] = reciprocalLattice(a1, a2, a3)
-% ????
+% ¾§¸ñ»ùÊ¸×ªÎªµ¹¸ñ×ÓÊ¸Á¿
     V = a1*cross(a2, a3)';
     b1 = 2*pi*cross(a2, a3)/V;
     b2 = 2*pi*cross(a3, a1)/V;
