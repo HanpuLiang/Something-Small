@@ -1,23 +1,23 @@
 %{
 @author: Liang Hanpu
 @date: 2019/3/25
-@description: æœ¬ç¨‹åºç”¨äºè®¡ç®—ä¸€äº›ç®€å•æ™¶æ ¼çš„å¸ƒé‡Œæ¸ŠåŒºå¹¶åšå›¾ã€‚
-              ç›®å‰ä»æ˜¯æœªå®ŒæˆçŠ¶æ€ï¼Œåªæ˜¯å¼€ä¸ªå‘å ä¸ªä½ï¼Œæé†’æˆ‘è¿˜è¦åšè¿™ä¸œè¥¿ã€‚
+@description: ????????
+              ??**???**???????
 %}
 
 clc, clear, close all
 
-% æ™¶æ ¼å¸¸æ•°
+% 
 a = 2;
-% åŸºçŸ¢
+% ?
 a1 = a/2*[0, 1, 1];
 a2 = a/2*[1, 0, 1];
 a3 = a/2*[1, 1, 0];
 
 [b1, b2, b3] = reciprocalLattice(a1, a2,a3);
 
-%% ä½œå›¾
-% åŸºç¡€è®¾ç½®
+%% ?
+% 
 figure
 axis equal
 hold on
@@ -27,10 +27,57 @@ xlabel('x')
 ylabel('y')
 zlabel('z')
 
-% åŸºçŸ¢çŸ¢é‡
+% ??
 plotVector(b1, b2, b3)
-% å¸ƒé‡Œæ¸ŠåŒºè¾¹ç•Œ
+% ??
+% ?ÿ??ñ?
 plotFace(b1)
+plotFace(-b1)
+plotFace(b2)
+plotFace(-b2)
+plotFace(b3)
+plotFace(-b3)
+
+%{
+@author: Liang Hanpu
+@date: 2019/3/25
+@description: ??????????????????????
+              ????**?????**????????????????????
+%}
+
+clc, clear, close all
+
+% ????
+a = 2;
+% ??
+a1 = a/2*[0, 1, 1];
+a2 = a/2*[1, 0, 1];
+a3 = a/2*[1, 1, 0];
+
+[b1, b2, b3] = reciprocalLattice(a1, a2,a3);
+
+%% ??
+% ????
+figure
+axis equal
+hold on
+grid on
+view(-37.5, 30)
+xlabel('x')
+ylabel('y')
+zlabel('z')
+
+% ????
+plotVector(b1, b2, b3)
+% ??????
+% ????????????????????
+plotFace(b1)
+plotFace(-b1)
+plotFace(b2)
+plotFace(-b2)
+plotFace(b3)
+plotFace(-b3)
+
 
 function plotVector(b1, b2, b3)
     plot3([0 b1(1)], [0 b1(2)], [0 b1(3)])
@@ -39,21 +86,25 @@ function plotVector(b1, b2, b3)
 end
 
 function plotFace(b)
-% è®¡ç®—é¢çš„æ–¹ç¨‹å¹¶ä¸”ä½œå›¾
-%   å¦‚ä½•åˆ¤æ–­é¢çš„å¤§å°ï¼Ÿï¼Ÿ
-    rho = sqrt(sum(b.^2));
-    theta0 = acos(b(3)/rho);
-    phi0 = atan(b(2)/b(1));
+% ??????????
+%   ??????????
+    % ?????????????
     
-    theta = linspace(theta0*5/10, theta0*15/10, 10);
-    phi = linspace(phi0*5/10, phi0*15/10, 10);
+%     rho = sqrt(sum(b.^2));
+%     theta0 = acos(b(3)/rho);
+%     phi0 = atan(b(2)/b(1));
+%     theta = linspace(theta0-0.5, theta0+0.5, 10);
+%     phi = linspace(phi0*5/10, phi0*15/10, 10);
+%     
+%     [T, P] = meshgrid(theta, phi);
+%     
+%     x = rho*sin(T).*cos(P);
+%     y = rho*sin(T).*sin(P);
     
-    [T, P] = meshgrid(theta, phi);
-    
-    x = rho*sin(T).*cos(P);
-    y = rho*sin(T).*sin(P);
+    % ?????????????????
+    [x, y] = meshgrid(linspace(-5, 5, 10));
     % z = rho*cos(T);
-    z = -1/b(3)*(b(1)*x + b(2)*y - b(1)^2-b(2)^2)+b(3)
+    z = -1/b(3)*(b(1)*x + b(2)*y - b(1)^2-b(2)^2)+b(3);
     mesh(x, y, z)
 end
 
@@ -61,7 +112,47 @@ end
 
 
 function [b1, b2, b3] = reciprocalLattice(a1, a2, a3)
-% æ™¶æ ¼åŸºçŸ¢è½¬ä¸ºå€’æ ¼å­çŸ¢é‡
+% ???????????
+    V = a1*cross(a2, a3)';
+    b1 = 2*pi*cross(a2, a3)/V;
+    b2 = 2*pi*cross(a3, a1)/V;
+    b3 = 2*pi*cross(a1, a2)/V;
+end
+    
+function plotVector(b1, b2, b3)
+    plot3([0 b1(1)], [0 b1(2)], [0 b1(3)])
+    plot3([0 b2(1)], [0 b2(2)], [0 b2(3)])
+    plot3([0 b3(1)], [0 b3(2)], [0 b3(3)])
+end
+
+function plotFace(b)
+% ???
+%   ???
+    % ???
+    
+%     rho = sqrt(sum(b.^2));
+%     theta0 = acos(b(3)/rho);
+%     phi0 = atan(b(2)/b(1));
+%     theta = linspace(theta0-0.5, theta0+0.5, 10);
+%     phi = linspace(phi0*5/10, phi0*15/10, 10);
+%     
+%     [T, P] = meshgrid(theta, phi);
+%     
+%     x = rho*sin(T).*cos(P);
+%     y = rho*sin(T).*sin(P);
+    
+    % ????ÿ??
+    [x, y] = meshgrid(linspace(-5, 5, 10));
+    % z = rho*cos(T);
+    z = -1/b(3)*(b(1)*x + b(2)*y - b(1)^2-b(2)^2)+b(3);
+    mesh(x, y, z)
+end
+
+
+
+
+function [b1, b2, b3] = reciprocalLattice(a1, a2, a3)
+% ????
     V = a1*cross(a2, a3)';
     b1 = 2*pi*cross(a2, a3)/V;
     b2 = 2*pi*cross(a3, a1)/V;
