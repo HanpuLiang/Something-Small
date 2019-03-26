@@ -1,23 +1,23 @@
 %{
 @author: Liang Hanpu
 @date: 2019/3/25
-@description: ���������ڼ���һЩ�򵥾���Ĳ���Ԩ������ͼ��
-              Ŀǰ����**δ���״̬**��ֻ�ǿ�����ռ��λ�������һ�Ҫ���ⶫ����
+@description: 本程序用于计算一些简单晶格的布里渊区并做图。
+              目前仍是**未完成状态**，只是开个坑占个位，提醒我还要做这东西。
 %}
 
 clc, clear, close all
 
-% ������
+% 晶格常数
 a = 2;
-% ��ʸ
+% 基矢
 a1 = a/2*[0, 1, 1];
 a2 = a/2*[1, 0, 1];
 a3 = a/2*[1, 1, 0];
 
 [b1, b2, b3] = reciprocalLattice(a1, a2,a3);
 
-%% ��ͼ
-% ��������
+%% 作图
+% 基础设置
 figure
 axis equal
 hold on
@@ -27,10 +27,10 @@ xlabel('x')
 ylabel('y')
 zlabel('z')
 
-% ��ʸʸ��
+% 基矢矢量
 plotVector(b1, b2, b3)
-% ����Ԩ���߽�
-% ����Ӧ�ÿ��Բ������п����������ñ���һ��
+% 布里渊区边界
+% 这里应该可以不用罗列开来，可以用遍历一下
 plotFace(b1)
 plotFace(-b1)
 plotFace(b2)
@@ -46,9 +46,9 @@ function plotVector(b1, b2, b3)
 end
 
 function plotFace(b)
-% ������ķ��̲�����ͼ
-%   ����ж���Ĵ�С����
-    % ����������д�����Ƿ��ֲ���
+% 计算面的方程并且作图
+%   如何判断面的大小？？
+    % 想用球坐标写，但是发现不对
     
 %     rho = sqrt(sum(b.^2));
 %     theta0 = acos(b(3)/rho);
@@ -61,7 +61,7 @@ function plotFace(b)
 %     x = rho*sin(T).*cos(P);
 %     y = rho*sin(T).*sin(P);
     
-    % ����ֱ������ϵд�����ǲ��ÿ��ƴ�С
+    % 想用直角坐标系写，但是不好控制大小
     [x, y] = meshgrid(linspace(-5, 5, 10));
     % z = rho*cos(T);
     z = -1/b(3)*(b(1)*x + b(2)*y - b(1)^2-b(2)^2)+b(3);
@@ -72,7 +72,7 @@ end
 
 
 function [b1, b2, b3] = reciprocalLattice(a1, a2, a3)
-% �����ʸתΪ������ʸ��
+% 晶格基矢转为倒格子矢量
     V = a1*cross(a2, a3)';
     b1 = 2*pi*cross(a2, a3)/V;
     b2 = 2*pi*cross(a3, a1)/V;
