@@ -44,6 +44,7 @@ function plotFace(b)
     rho = sqrt(sum(b.^2));
     theta0 = acos(b(3)/rho);
     phi0 = atan(b(2)/b(1));
+    
     theta = linspace(theta0*5/10, theta0*15/10, 10);
     phi = linspace(phi0*5/10, phi0*15/10, 10);
     
